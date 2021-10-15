@@ -23,7 +23,7 @@ const Form = (props) =>{
                  </label>
                  <label id='toppings-wrapper'>
                      <h3>Toppings</h3>
-                    <label>Pepperoni &nbsp;
+                    <label>Pepperoni
                         <input
                             type="checkbox"
                             onChange={props.change}
@@ -31,7 +31,7 @@ const Form = (props) =>{
                             checked={props.values.pepperoni}
                         />
                     </label>
-                    <label>Sausage &nbsp;
+                    <label>Sausage
                         <input
                             type="checkbox"
                             onChange={props.change}
@@ -39,7 +39,7 @@ const Form = (props) =>{
                             checked={props.values.sausage}
                         />
                     </label>
-                    <label>Canadian Bacon &nbsp;
+                    <label>Canadian Bacon
                         <input
                             type="checkbox"
                             onChange={props.change}
@@ -47,7 +47,7 @@ const Form = (props) =>{
                             checked={props.values.canadianBacon}
                         />
                     </label>
-                    <label>Onions &nbsp;
+                    <label>Onions
                         <input
                             type="checkbox"
                             onChange={props.change}
