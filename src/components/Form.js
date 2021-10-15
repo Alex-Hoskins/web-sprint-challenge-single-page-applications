@@ -79,10 +79,10 @@ const Form = (props) =>{
                     minLength="2"
                     />
                 </label>
-                <input type='submit' value='Submit your order'/>
                 <div className='errors'>
-                    <div>{props.errors.name}</div>
+                    <p>{props.errors.name}</p>
                 </div>
+                <input type='submit' value='Submit your order'/>
             </form>
         </div>
     )

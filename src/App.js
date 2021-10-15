@@ -25,8 +25,18 @@ const App = () => {
   const [orders, setOrders]=useState([])
   const [formErrors, setFormErrors]=useState(initialFormErrors)
     
+
+
+  const validate= (name, value) =>{
+    yup.reach(formSchema, name)
+    .validate(value)
+    .then(() => setFormErrors({...formErrors, [name]:''}))
+    .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
+  }
+
   const change= (evt) =>{
-    setFormValues({ ...formValues, [evt.target.name]: evt.target.value })
+    setFormValues({ ...formValues, [evt.target.name]: evt.target.value });
+    validate(evt.target.name, evt.target.value);
   }
 
   const postNewOrder = newOrder =>{
@@ -39,14 +49,6 @@ const App = () => {
       }).finally(()=>{
         setFormValues(initialFormValues)
       })
-  }
-
-
-  const validate= (name, value) =>{
-    yup.reach(formSchema, name)
-    .validate(value)
-    .then(() => setFormErrors({...formErrors, [name]:''}))
-    .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
   }
 
   const submit = evt => {
