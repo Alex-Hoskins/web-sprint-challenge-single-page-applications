@@ -50,4 +50,20 @@ describe('Pizza App', () =>{
             nameInput().should('have.value', '')
         })
     })
+
+    describe("Checkbox inputs are functioning correctly",()=>{
+
+        it('Can check multiple inputs', () => {
+            pepperoniInput()
+                .check()  
+                .should('be.checked')
+            onionsInput()
+                .check()  
+                .should('be.checked')
+                .uncheck()
+                .should('not.be.checked');
+        })
+    })
+
+
 })
