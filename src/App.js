@@ -73,11 +73,10 @@ const App = () => {
           <Link to="/pizza" id="order-pizza">Order</Link>
         </nav>
       </header>
-      <h1>Lambda Eats</h1>
       <Route exact path="/">
         <Homepage/>
       </Route>
-      <Route path="/pizza">
+      <Route exact path="/pizza">
         <Form 
           change={change} 
           values={formValues} 

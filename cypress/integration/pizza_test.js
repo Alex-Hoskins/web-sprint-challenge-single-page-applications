@@ -41,17 +41,6 @@ describe('Pizza App', () =>{
                 .should('have.value', 'I want extra sauce on half of the pizza')
         })
     })
-
-    // describe("Checkbox inputs are functioning correctly",()=>{
-
-    //     it('Can check the box in terms input', () => {
-    //         termsInput()
-    //             .check()  
-    //             .should('be.checked')
-    //             .uncheck()
-    //             .should('not.be.checked');
-    //     })
-    // })
     describe("Submit button works",()=>{
 
         it('Button submits after required fields',()=>{
@@ -61,26 +50,4 @@ describe('Pizza App', () =>{
             nameInput().should('have.value', '')
         })
     })
-    
-
-    // describe("Error messages populate after validation",()=>{
-
-    //     it('Error populates if name field is too short', () => {
-    //         nameInput().type('Al');
-    //         cy.contains('Name must be 3 or more characters long!');
-    //     })
-    //     it('Error populates if password field is too short', () => {
-    //         passwordInput().type('1234567');
-    //         cy.contains('Password must be 8 or more characters long!');
-    //     })
-    //     it('Error populates if their is not an appropriate email', () => {
-    //         emailInput().type('alex@alex');
-    //         cy.contains('Must be a valid email address!');
-    //     })
-    //     it('Error populates if terms field is unchecked', () => {
-    //         termsInput().uncheck();
-    //         cy.contains('Please read the terms of service and check the box when you are done!');
-    //     })
-       
-    // })
 })
