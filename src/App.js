@@ -3,6 +3,8 @@ import { Route, Link } from 'react-router-dom';
 import  Homepage from './components/Homepage';
 import Form from './components/Form';
 import axios from 'axios';
+import formSchema from './formSchema'
+import * as yup from 'yup';
 
 const initialFormValues = {
   size:'',
@@ -13,11 +15,15 @@ const initialFormValues = {
   specialText:'',
   name:''
 }
+const initialFormErrors={
+  name: ''
+}
 
 const App = () => {
 
   const [formValues, setFormValues]=useState(initialFormValues);
   const [orders, setOrders]=useState([])
+  const [formErrors, setFormErrors]=useState(initialFormErrors)
     
   const change= (evt) =>{
     setFormValues({ ...formValues, [evt.target.name]: evt.target.value })
@@ -33,6 +39,14 @@ const App = () => {
       }).finally(()=>{
         setFormValues(initialFormValues)
       })
+  }
+
+
+  const validate= (name, value) =>{
+    yup.reach(formSchema, name)
+    .validate(value)
+    .then(() => setFormErrors({...formErrors, [name]:''}))
+    .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
   }
 
   const submit = evt => {
@@ -62,7 +76,12 @@ const App = () => {
         <Homepage/>
       </Route>
       <Route path="/pizza">
-        <Form change={change} values={formValues} submit={submit}/>
+        <Form 
+          change={change} 
+          values={formValues} 
+          submit={submit}
+          errors={formErrors}
+          />
       </Route>
     </div>
   );
