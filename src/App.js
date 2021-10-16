@@ -35,8 +35,10 @@ const App = () => {
   }
 
   const change= (evt) =>{
-    setFormValues({ ...formValues, [evt.target.name]: evt.target.value });
-    validate(evt.target.name, evt.target.value);
+    const { name, value, checked, type } = evt.target;
+    const valueToUse = type === 'checkbox' ? checked : value;
+    setFormValues({ ...formValues, [evt.target.name]: evt.target.valueToUse });
+    validate(evt.target.name, evt.target.valueToUse);
   }
 
   const postNewOrder = newOrder =>{
@@ -53,13 +55,13 @@ const App = () => {
 
   const submit = evt => {
     const newOrder = {
-        size: formValues.name.trim(),
+        size: formValues.name,
         pepperoni: !!formValues.terms,
         sausage: !!formValues.sausage,
         canadianBacon: !!formValues.canadianBacon,
         onions: !!formValues.onions,
-        specialText: formValues.specialText.trim(),
-        name: formValues.name.trim()
+        specialText: formValues.specialText,
+        name: formValues.name
     }
     
     postNewOrder(newOrder)
