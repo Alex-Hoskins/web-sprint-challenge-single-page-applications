@@ -35,17 +35,14 @@ const App = () => {
   }
 
   const change= (evt) =>{
-    const { name, value, checked, type } = evt.target;
-    const valueToUse = type === 'checkbox' ? checked : value;
-    setFormValues({ ...formValues, [evt.target.name]: evt.target.valueToUse });
-    validate(evt.target.name, evt.target.valueToUse);
+    if(evt.target.type === 'checkbox' ? setFormValues({ ...formValues, [evt.target.name]: evt.target.checked }) :  setFormValues({ ...formValues, [evt.target.name]: evt.target.value }));
+    validate(evt.target.name, evt.target.value);
   }
 
   const postNewOrder = newOrder =>{
     axios.post('https://reqres.in/api/orders', newOrder)
       .then(res=>{
         setOrders([{size: res.data.size, pepperoni: res.data.pepperoni, sausage: res.data.sausage, canadianBacon: res.data.canadianBacon, onions: res.data.onions, specialText: res.data.specialText, name: res.data.name},...orders]);
-        console.log(res)
       }).catch(err=>{
         console.error(err);
       }).finally(()=>{
@@ -55,15 +52,14 @@ const App = () => {
 
   const submit = evt => {
     const newOrder = {
-        size: formValues.name,
+        size: formValues.name.trim(),
         pepperoni: !!formValues.terms,
         sausage: !!formValues.sausage,
         canadianBacon: !!formValues.canadianBacon,
         onions: !!formValues.onions,
-        specialText: formValues.specialText,
-        name: formValues.name
+        specialText: formValues.specialText.trim(),
+        name: formValues.name.trim()
     }
-    
     postNewOrder(newOrder)
   }
 
